@@ -85,7 +85,6 @@
     <Compile Include="Tests\TestUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Tests\test.config" />
     <None Include="Tests\TestConfig.config" />
   </ItemGroup>
@@ -110,4 +109,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(ProjectDir)\Tests\test.config" "$(TargetPath).config"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
