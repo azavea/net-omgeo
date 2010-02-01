@@ -23,7 +23,7 @@
 
 using GeoAPI.CoordinateSystems;
 
-namespace Avencia.Geocoding
+namespace Avencia.Open.Geocoding
 {
     /// <summary>
     /// A request that something be geocoded.  Not all geocoders will use all fields.

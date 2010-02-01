@@ -24,7 +24,7 @@
 using System;
 using System.Reflection;
 
-namespace Avencia.Geocoding
+namespace Avencia.Open.Geocoding
 {
 	/// <summary>
 	/// A base class for anything with a set of properties that describes an address.

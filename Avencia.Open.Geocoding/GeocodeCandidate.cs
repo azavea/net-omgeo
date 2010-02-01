@@ -24,7 +24,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Avencia.Geocoding
+namespace Avencia.Open.Geocoding
 {
     /// <summary>
     /// A single match from geocoding some input.
@@ -32,31 +32,31 @@ namespace Avencia.Geocoding
     [Serializable]
     public class GeocodeCandidate : AddressContainer, IComparable
     {
-    	/// <summary>
-    	/// How good a match was this candidate.  Higher is better.  Actual range of values
-    	/// depends on the IGeocoderSource that generated it.
-    	/// </summary>
-    	public double MatchScore { get; set; }
-    	/// <summary>
+        /// <summary>
+        /// How good a match was this candidate.  Higher is better.  Actual range of values
+        /// depends on the IGeocoderSource that generated it.
+        /// </summary>
+        public double MatchScore { get; set; }
+        /// <summary>
         /// Latitude of the result (if in lat/lon, otherwise the Y value of whatever
         /// coordinate system is in use).
         /// </summary>
-		public double Latitude { get; set; }
+        public double Latitude { get; set; }
         /// <summary>
         /// Longitude of the result (if in lat/lon, otherwise the X value of whatever
         /// coordinate system is in use).
         /// </summary>
-		public double Longitude { get; set; }
+        public double Longitude { get; set; }
         /// <summary>
         /// The entire standardized address, including city/state/zip if populated
         /// ("340 N 12TH ST, PHILADELPHIA, PA, 19107").
         /// </summary>
-		public string StandardizedAddress { get; set; }
+        public string StandardizedAddress { get; set; }
         /// <summary>
         /// The raw output from the geocoding process.
         /// May not be populated by all geocode sources.
         /// </summary>
-		public string RawData { get; set; }
+        public string RawData { get; set; }
 
         /// <exclude/>
         public int CompareTo(object obj)
@@ -68,8 +68,8 @@ namespace Avencia.Geocoding
 
             GeocodeCandidate gc = (GeocodeCandidate)obj;
             return MatchScore.CompareTo(gc.MatchScore);
-		}
-	}
+        }
+    }
 
     ///<summary>
     /// Candidate comparer that will sort a list of GeocoderCandidate from

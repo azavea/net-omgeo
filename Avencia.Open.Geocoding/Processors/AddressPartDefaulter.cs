@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Avencia.Open.Common;
 
-namespace Avencia.Geocoding.Processors
+namespace Avencia.Open.Geocoding.Processors
 {
     /// <summary>
     /// This request processor takes configuration and simply writes

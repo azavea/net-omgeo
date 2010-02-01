@@ -26,7 +26,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using Avencia.Open.Common;
 
-namespace Avencia.Geocoding.Processors
+namespace Avencia.Open.Geocoding.Processors
 {
     /// <summary>
     /// This response processor iterates through the candidates in a response

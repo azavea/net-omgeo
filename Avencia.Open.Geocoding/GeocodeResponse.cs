@@ -22,8 +22,9 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 
 using System.Collections.Generic;
+using Avencia.Open.Geocoding;
 
-namespace Avencia.Geocoding
+namespace Avencia.Open.Geocoding
 {
     /// <summary>
     /// A response to a GeocodeRequest.  This includes the source that generated

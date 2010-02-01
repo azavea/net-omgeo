@@ -26,7 +26,7 @@ using System.Xml;
 using Avencia.Open.Common;
 using NUnit.Framework;
 
-namespace Avencia.Geocoding.Processors.Tests
+namespace Avencia.Open.Geocoding.Processors.Tests
 {
     /// <exclude />
     [TestFixture]
@@ -40,11 +40,11 @@ namespace Avencia.Geocoding.Processors.Tests
             doc.LoadXml(@"
             <components>
                 <component name='Geocoder'>
-                    <parameter name='DummyGeocoder' value='Avencia.Geocoding.Tests.GeocoderSourceDummy,Avencia.Geocoding' />
+                    <parameter name='DummyGeocoder' value='Avencia.Open.Geocoding.Tests.GeocoderSourceDummy,Avencia.Open.Geocoding' />
                 </component>
 
                 <component name='DummyGeocoder'>
-                    <parameter name='CandidateTextReplacer' value='Avencia.Geocoding.Processors.CandidateTextReplacer,Avencia.Geocoding' />
+                    <parameter name='CandidateTextReplacer' value='Avencia.Open.Geocoding.Processors.CandidateTextReplacer,Avencia.Open.Geocoding' />
                 </component>
 
                 <component name='CandidateTextReplacer'>
@@ -72,11 +72,11 @@ namespace Avencia.Geocoding.Processors.Tests
             doc.LoadXml(@"
             <components>
                 <component name='Geocoder'>
-                    <parameter name='DummyGeocoder' value='Avencia.Geocoding.Tests.GeocoderSourceDummy,Avencia.Geocoding' />
+                    <parameter name='DummyGeocoder' value='Avencia.Open.Geocoding.Tests.GeocoderSourceDummy,Avencia.Open.Geocoding' />
                 </component>
 
                 <component name='DummyGeocoder'>
-                    <parameter name='CandidateTextReplacer' value='Avencia.Geocoding.Processors.CandidateTextReplacer,Avencia.Geocoding' />
+                    <parameter name='CandidateTextReplacer' value='Avencia.Open.Geocoding.Processors.CandidateTextReplacer,Avencia.Open.Geocoding' />
                 </component>
 
                 <component name='CandidateTextReplacer'>

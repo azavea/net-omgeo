@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using Avencia.Open.Common;
 using NUnit.Framework;
 
-namespace Avencia.Geocoding.Tests
+namespace Avencia.Open.Geocoding.Tests
 {
     /// <exclude/>
     [TestFixture]

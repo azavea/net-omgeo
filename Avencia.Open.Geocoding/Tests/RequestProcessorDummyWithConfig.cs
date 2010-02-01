@@ -23,10 +23,10 @@
 
 using System;
 using System.Text;
-using Avencia.Geocoding.Processors;
 using Avencia.Open.Common;
+using Avencia.Open.Geocoding.Processors;
 
-namespace Avencia.Geocoding.Tests
+namespace Avencia.Open.Geocoding.Tests
 {
     /// <exclude />
     public class RequestProcessorDummyWithConfig : IRequestProcessor

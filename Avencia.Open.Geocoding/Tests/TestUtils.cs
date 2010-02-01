@@ -24,7 +24,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace Avencia.Geocoding.Tests
+namespace Avencia.Open.Geocoding.Tests
 {
     /// <exclude/>
     public static class TestUtils

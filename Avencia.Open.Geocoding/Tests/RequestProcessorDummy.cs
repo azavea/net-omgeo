@@ -22,9 +22,9 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 
 using System.Text;
-using Avencia.Geocoding.Processors;
+using Avencia.Open.Geocoding.Processors;
 
-namespace Avencia.Geocoding.Tests
+namespace Avencia.Open.Geocoding.Tests
 {
     /// <exclude />
     public class RequestProcessorDummy : IRequestProcessor

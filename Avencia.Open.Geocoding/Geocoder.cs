@@ -25,13 +25,13 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
-using Avencia.Geocoding.Processors;
 using Avencia.Open.Common;
+using Avencia.Open.Geocoding.Processors;
 using Avencia.Open.Reprojection;
 using GeoAPI.CoordinateSystems;
 using GeoAPI.Geometries;
 
-namespace Avencia.Geocoding
+namespace Avencia.Open.Geocoding
 {
     /// <summary>
     /// The main geocoding class.  This will inspect configuration, and use that to define the
@@ -46,10 +46,10 @@ namespace Avencia.Geocoding
 
         /// <summary>
         /// Constructs the geocoder, reading the list of sources from the default
-        /// section ("GeocodingSources") of the default config file ("Avencia.Geocoding").
+        /// section ("GeocodingSources") of the default config file ("Avencia.Open.Geocoding").
         /// </summary>
         public Geocoder()
-            : this("Avencia.Geocoding", "GeocoderSources") { }
+            : this("Avencia.Open.Geocoding", "GeocoderSources") { }
 
         /// <summary>
         /// Constructs the geocoder, reading the list of sources from the default

@@ -23,7 +23,7 @@
 
 using System.Collections.Generic;
 
-namespace Avencia.Geocoding
+namespace Avencia.Open.Geocoding
 {
     /// <summary>
     /// This interface identifies 'GeocoderSource' instances that support batch geocoding

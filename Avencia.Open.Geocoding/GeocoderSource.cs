@@ -25,12 +25,12 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Reflection;
-using Avencia.Geocoding.Processors;
 using Avencia.Open.Common;
+using Avencia.Open.Geocoding.Processors;
 using GeoAPI.CoordinateSystems;
 using log4net;
 
-namespace Avencia.Geocoding
+namespace Avencia.Open.Geocoding
 {
     /// <summary>
     /// Any source usable by the geocoder must implement this class.

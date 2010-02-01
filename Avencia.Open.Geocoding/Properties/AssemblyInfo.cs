@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Avencia.Geocoding")]
+[assembly: AssemblyTitle("Avencia.Open.Geocoding")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Avencia Incorporated")]
-[assembly: AssemblyProduct("Avencia.Geocoding")]
+[assembly: AssemblyProduct("Avencia.Open.Geocoding")]
 [assembly: AssemblyCopyright("Copyright © Avencia Incorporated 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

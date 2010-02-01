@@ -24,7 +24,7 @@
 using System.Collections.Generic;
 using Avencia.Open.Common;
 
-namespace Avencia.Geocoding.Processors
+namespace Avencia.Open.Geocoding.Processors
 {
     /// <summary>
     /// This process examines a list of applicable countries.  If the request's country is

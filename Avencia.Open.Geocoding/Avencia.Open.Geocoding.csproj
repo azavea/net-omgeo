@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{045EB402-62AF-499F-978A-80C9CF6C7B85}</ProjectGuid>
+    <ProjectGuid>{F73873D5-14B9-4570-8D74-D83321162EDC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Avencia.Geocoding</RootNamespace>
-    <AssemblyName>Avencia.Geocoding</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <RootNamespace>Avencia.Open.Geocoding</RootNamespace>
+    <AssemblyName>Avencia.Open.Geocoding</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -21,16 +21,14 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\Avencia.Geocoding.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>none</DebugType>
+    <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Avencia.Geocoding.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GeoAPI, Version=1.1.0.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
@@ -39,7 +37,7 @@
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\log4net.dll</HintPath>
+      <HintPath>..\Avencia.Open.Common\lib\log4net\log4net.dll</HintPath>
     </Reference>
     <Reference Include="NetTopologySuite, Version=1.7.3.36606, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -51,6 +49,15 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -63,20 +70,28 @@
     <Compile Include="GeocoderSource.cs" />
     <Compile Include="IGeocoderBatchSource.cs" />
     <Compile Include="Processors\AddressPartDefaulter.cs" />
-    <Compile Include="Processors\CountrySelectorProcessor.cs" />
-    <Compile Include="Processors\CandidateTextReplacer.cs" />
     <Compile Include="Processors\AddressSplitter.cs" />
+    <Compile Include="Processors\CandidateTextReplacer.cs" />
+    <Compile Include="Processors\CountrySelectorProcessor.cs" />
     <Compile Include="Processors\IProcessor.cs" />
     <Compile Include="Processors\IRequestProcessor.cs" />
     <Compile Include="Processors\IResponseProcessor.cs" />
     <Compile Include="Processors\Tests\CandidateTextReplacerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\AddressSplitterTest.cs" />
-    <Compile Include="Tests\RequestProcessorDummyWithConfig.cs" />
     <Compile Include="Tests\DummyGeocoderTests.cs" />
     <Compile Include="Tests\GeocoderSourceDummy.cs" />
     <Compile Include="Tests\RequestProcessorDummy.cs" />
+    <Compile Include="Tests\RequestProcessorDummyWithConfig.cs" />
     <Compile Include="Tests\TestUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Avencia.Open.Geocoding.csproj.bakk" />
+    <None Include="Tests\test.config" />
+    <None Include="Tests\TestConfig.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Avencia.Open.Geocoding.LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Avencia.Open.Common\Avencia.Open.Common.csproj">
@@ -88,15 +103,6 @@
       <Name>Avencia.Open.Reprojection</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Tests\test.config" />
-    <None Include="Tests\TestConfig.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Avencia.Open.Geocoding.LICENSE.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -105,7 +111,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(ProjectDir)\Tests\test.config" "$(TargetPath).config"</PostBuildEvent>
-  </PropertyGroup>
 </Project>

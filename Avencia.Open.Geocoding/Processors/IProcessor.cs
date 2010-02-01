@@ -21,7 +21,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
-namespace Avencia.Geocoding.Processors
+namespace Avencia.Open.Geocoding.Processors
 {
     /// <summary>
     /// This is a marker interface to allow us to take some shortcuts (e.g. when

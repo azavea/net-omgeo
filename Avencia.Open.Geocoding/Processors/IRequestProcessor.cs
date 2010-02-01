@@ -21,7 +21,7 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
-namespace Avencia.Geocoding.Processors
+namespace Avencia.Open.Geocoding.Processors
 {
     /// <summary>
     /// This interface describes a strategy for processing the a geocoding request.

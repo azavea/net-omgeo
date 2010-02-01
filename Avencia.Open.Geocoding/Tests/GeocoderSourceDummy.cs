@@ -21,12 +21,12 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
+using System.Collections.Generic;
 using Avencia.Open.Common;
 using Avencia.Open.Reprojection;
 using GeoAPI.CoordinateSystems;
-using System.Collections.Generic;
 
-namespace Avencia.Geocoding.Tests
+namespace Avencia.Open.Geocoding.Tests
 {
     /// <summary>
     /// This is a simple hardcoded geocoder that does not have network or database
