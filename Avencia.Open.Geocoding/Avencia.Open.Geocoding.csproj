@@ -86,7 +86,6 @@
     <Compile Include="Tests\TestUtils.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Avencia.Open.Geocoding.csproj.bakk" />
     <None Include="Tests\test.config" />
     <None Include="Tests\TestConfig.config" />
   </ItemGroup>
