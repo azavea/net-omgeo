@@ -91,7 +91,7 @@
       <Name>Avencia.Open.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Avencia.Open.Reprojection\Avencia.Open.Reprojection.csproj">
-      <Project>{F9FCE3C5-B8BC-416D-9B8B-342575CAF6D5}</Project>
+      <Project>{155C7090-D562-4093-91B2-69C86795A0F4}</Project>
       <Name>Avencia.Open.Reprojection</Name>
     </ProjectReference>
   </ItemGroup>
