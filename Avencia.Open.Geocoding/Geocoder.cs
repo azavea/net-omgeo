@@ -36,6 +36,10 @@ namespace Avencia.Open.Geocoding
     /// <summary>
     /// The main geocoding class.  This will inspect configuration, and use that to define the
     /// list of geocoding sources it will use.
+    /// 
+    /// Please note that different geocoding services may each have their own terms of service
+    /// or usage agreements.  You are responsible for following these terms for any implementations
+    /// you may use.
     /// </summary>
     public class Geocoder : GeocoderSource
     {
