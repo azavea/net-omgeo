@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EB345FD7-EB67-4F52-B873-6A456C831B99}</ProjectGuid>
+    <ProjectGuid>{9FFEDCD1-6C51-414D-9F1E-12E3C62BADF3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Avencia.Open.Geocoding.Google</RootNamespace>
-    <AssemblyName>Avencia.Open.Geocoding.Google</AssemblyName>
+    <RootNamespace>Avencia.Open.Geocoding.Yahoo</RootNamespace>
+    <AssemblyName>Avencia.Open.Geocoding.Yahoo</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>
@@ -37,23 +37,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Avencia.Open.Reprojection\lib\geoapi\GeoAPI.dll</HintPath>
     </Reference>
-    <Reference Include="NetTopologySuite, Version=1.7.3.36606, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Avencia.Open.Reprojection\lib\nettopologysuite\NetTopologySuite.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework, Version=2.2.10.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Avencia.Open.Common\lib\nunit\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GoogleGeocoder.cs" />
+    <Compile Include="Tests\YahooTests.cs" />
+    <Compile Include="YahooGeocoder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\GoogleTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Avencia.Open.Common\Avencia.Open.Common.csproj">
@@ -70,10 +66,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Tests\GoogleTests.config" />
+    <None Include="Tests\YahooTests.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Avencia.Open.Geocoding.Google.LICENSE.txt">
+    <Content Include="Avencia.Open.Geocoding.Yahoo.LICENSE.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
