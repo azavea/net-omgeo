@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avencia.Open.Geocoding", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avencia.Open.Geocoding.Google", "Avencia.Open.Geocoding.Google\Avencia.Open.Geocoding.Google.csproj", "{EB345FD7-EB67-4F52-B873-6A456C831B99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avencia.Open.Geocoding.Yahoo", "Avencia.Open.Geocoding.Yahoo\Avencia.Open.Geocoding.Yahoo.csproj", "{9FFEDCD1-6C51-414D-9F1E-12E3C62BADF3}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{EB345FD7-EB67-4F52-B873-6A456C831B99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB345FD7-EB67-4F52-B873-6A456C831B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB345FD7-EB67-4F52-B873-6A456C831B99}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9FFEDCD1-6C51-414D-9F1E-12E3C62BADF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9FFEDCD1-6C51-414D-9F1E-12E3C62BADF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9FFEDCD1-6C51-414D-9F1E-12E3C62BADF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9FFEDCD1-6C51-414D-9F1E-12E3C62BADF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
