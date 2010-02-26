@@ -61,15 +61,15 @@ namespace Avencia.Open.Geocoding.Google
         {
             const string baseGoogleGeocodeURL = @"http://maps.google.com/maps/geo";
 
-            // Either use the querystring from the request, or if there wasn't one in the request,
-            // make it up from the request parts.
-            string queryString = !String.IsNullOrEmpty(geocodeRequest.TextString)
-                                     ?
-                                         HttpUtility.UrlEncode(geocodeRequest.TextString)
-                                     :
-                                         geocodeRequest.Address + ", " +
-                                         geocodeRequest.City + ", " + geocodeRequest.State + " " +
-                                         geocodeRequest.PostalCode + ", " + geocodeRequest.Country;
+            // For the address, either use the address field or the text string, 
+            // depending on which one has a value.  Then, add each following address
+            // part, one by one, if it has a value.
+            string queryString =
+                (!String.IsNullOrEmpty(geocodeRequest.TextString) ? geocodeRequest.TextString : geocodeRequest.Address) +
+                (!String.IsNullOrEmpty(geocodeRequest.City) ? (", " + geocodeRequest.City) : "") +
+                (!String.IsNullOrEmpty(geocodeRequest.State) ? (", " + geocodeRequest.State) : "") +
+                (!String.IsNullOrEmpty(geocodeRequest.PostalCode) ? (" " + geocodeRequest.PostalCode) : "") +
+                (!String.IsNullOrEmpty(geocodeRequest.Country) ? (", " + geocodeRequest.Country) : "");
 
             // add oe=utf-8 here for returning valid utf-8, not iso-8859-1
             string googleGeocodeURL = baseGoogleGeocodeURL +
