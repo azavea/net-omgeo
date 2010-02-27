@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avencia.Open.Common", "Avencia.Open.Common\Avencia.Open.Common.csproj", "{ADBFE412-4F06-454A-AAF5-E93719E3B1FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azavea.Open.Common", "Azavea.Open.Common\Azavea.Open.Common.csproj", "{ADBFE412-4F06-454A-AAF5-E93719E3B1FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avencia.Open.Reprojection", "Avencia.Open.Reprojection\Avencia.Open.Reprojection.csproj", "{155C7090-D562-4093-91B2-69C86795A0F4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azavea.Open.Reprojection", "Azavea.Open.Reprojection\Azavea.Open.Reprojection.csproj", "{155C7090-D562-4093-91B2-69C86795A0F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avencia.Open.Geocoding", "Avencia.Open.Geocoding\Avencia.Open.Geocoding.csproj", "{F73873D5-14B9-4570-8D74-D83321162EDC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azavea.Open.Geocoding", "Azavea.Open.Geocoding\Azavea.Open.Geocoding.csproj", "{F73873D5-14B9-4570-8D74-D83321162EDC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avencia.Open.Geocoding.Google", "Avencia.Open.Geocoding.Google\Avencia.Open.Geocoding.Google.csproj", "{EB345FD7-EB67-4F52-B873-6A456C831B99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azavea.Open.Geocoding.Google", "Azavea.Open.Geocoding.Google\Azavea.Open.Geocoding.Google.csproj", "{EB345FD7-EB67-4F52-B873-6A456C831B99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avencia.Open.Geocoding.Yahoo", "Avencia.Open.Geocoding.Yahoo\Avencia.Open.Geocoding.Yahoo.csproj", "{9FFEDCD1-6C51-414D-9F1E-12E3C62BADF3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azavea.Open.Geocoding.Yahoo", "Azavea.Open.Geocoding.Yahoo\Azavea.Open.Geocoding.Yahoo.csproj", "{9FFEDCD1-6C51-414D-9F1E-12E3C62BADF3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
