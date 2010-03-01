@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Azavea.Open.Geocoding")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Azavea Incorporated")]
+[assembly: AssemblyCompany("Azavea Inc.")]
 [assembly: AssemblyProduct("Azavea.Open.Geocoding")]
-[assembly: AssemblyCopyright("Copyright © Azavea Incorporated 2009")]
+[assembly: AssemblyCopyright("Copyright © Azavea Inc. 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 // Configure log4net using the .config file
