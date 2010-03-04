@@ -131,19 +131,19 @@ namespace Azavea.Open.Geocoding.Yahoo
             {
                 switch(precision)
                 {
-                    case "address": curCandidate.MatchScore =0; break;
-                    case "street": curCandidate.MatchScore =1; break;
-                    case "zip+4": curCandidate.MatchScore =2; break;
-                    case "zip+2": curCandidate.MatchScore=3; break;
-                    case "zip": curCandidate.MatchScore=4; break;
-                    case "city": curCandidate.MatchScore=5; break;
-                    case "state": curCandidate.MatchScore=6; break;
-                    default: curCandidate.MatchScore=7;break;
+                    case "address": curCandidate.MatchScore = 8; break;
+                    case "street": curCandidate.MatchScore = 7; break;
+                    case "zip+4": curCandidate.MatchScore = 6; break;
+                    case "zip+2": curCandidate.MatchScore = 5; break;
+                    case "zip": curCandidate.MatchScore = 4; break;
+                    case "city": curCandidate.MatchScore = 3; break;
+                    case "state": curCandidate.MatchScore = 2; break;
+                    default: curCandidate.MatchScore = 1;break;
                 }
             }
             else
             {
-                curCandidate.MatchScore=8;
+                curCandidate.MatchScore = 0;
             }
 
             //Address

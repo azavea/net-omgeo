@@ -66,8 +66,8 @@ namespace Azavea.Open.Geocoding
                 throw new InvalidCastException("GeocodeCandidates can only be compared to geocode candidates!");
             }
 
-            GeocodeCandidate gc = (GeocodeCandidate)obj;
-            return MatchScore.CompareTo(gc.MatchScore);
+            // Sorts candidates in descending order
+            return ((GeocodeCandidate)obj).MatchScore.CompareTo(MatchScore);
         }
     }
 
@@ -75,6 +75,7 @@ namespace Azavea.Open.Geocoding
     /// Candidate comparer that will sort a list of GeocoderCandidate from
     /// highest score to lowest score.
     ///</summary>
+    [Obsolete("No longer needed because the default comparer sorts descending. Use that instead. Removing after 9/1/2010", false)]
     public class DescendingCandidateComparer : IComparer<GeocodeCandidate>
     {
         /// <summary>

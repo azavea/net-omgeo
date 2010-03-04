@@ -73,6 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\AddressSplitterTest.cs" />
     <Compile Include="Tests\DummyGeocoderTests.cs" />
+    <Compile Include="Tests\GeocodeCandidateTests.cs" />
     <Compile Include="Tests\GeocoderSourceDummy.cs" />
     <Compile Include="Tests\RequestProcessorDummy.cs" />
     <Compile Include="Tests\RequestProcessorDummyWithConfig.cs" />
