@@ -135,8 +135,9 @@ namespace Azavea.Open.Geocoding.Google
             //6       Street level accuracy. 
             //7       Intersection level accuracy. 
             //8       Address level accuracy. 
+            //9       Premise (building name, etc) level accuracy
             XmlElement addressDetailsNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::AddressDetails");
-            if (addressDetailsNode != null) curCandidate.MatchScore = 8 - Convert.ToDouble(addressDetailsNode.GetAttribute("Accuracy"));
+            if (addressDetailsNode != null) curCandidate.MatchScore = Convert.ToDouble(addressDetailsNode.GetAttribute("Accuracy"));
 
             //Standardized Address
             XmlElement standardAddressNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::address");
