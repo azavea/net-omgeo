@@ -73,7 +73,7 @@ namespace Azavea.Open.Geocoding.Google
 
             // add oe=utf-8 here for returning valid utf-8, not iso-8859-1
             string googleGeocodeURL = baseGoogleGeocodeURL +
-                                      "?q=" + queryString +
+                                      "?q=" + HttpUtility.UrlEncode(queryString) +
                                       "&output=xml&oe=utf-8&key=" + _authKey;
 
             string response = InternetSourceUtil.GetRawHTMLFromURL(googleGeocodeURL);
