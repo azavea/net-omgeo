@@ -30,7 +30,7 @@ namespace Azavea.Open.Geocoding.GeocoderUS.Tests
 {
     ///<exclude/>
     [TestFixture]
-    public class TesterGeocoderUS
+    public class GeocoderUSTests
     {
         private readonly Geocoder _geocoderUS = new Geocoder(
             new Config("../../Tests/GeocoderUSTests.config", "GeocoderUSTest"),
