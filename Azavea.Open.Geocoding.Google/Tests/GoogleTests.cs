@@ -118,6 +118,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
         }
 
         ///<exclude/>
+        [Ignore("Google geocoder seems to be returning the wrong ZIP code for the address in this test.")]
         [Test]
         public void TestGoogleGeocoderAmpersandInAddress()
         {
@@ -128,6 +129,19 @@ namespace Azavea.Open.Geocoding.Google.Tests
 
             Assert.AreEqual(1, gRes.Candidates.Count);
             Assert.AreEqual("S Broad St & Tasker St, Philadelphia, PA 19147, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
+        }
+        
+        ///<exclude/>
+        [Test]
+        public void TestGoogleGeocoderAmpersandInAddress2()
+        {
+            GeocodeRequest gr = new GeocodeRequest();
+            gr.TextString = "21st & Cherry Sts, Philadelphia, PA";
+            GeocodeResponse gRes = _googleGeocoder.Geocode(gr);
+            TestUtils.OutputGeocodeResponses(gRes);
+
+            Assert.AreEqual(1, gRes.Candidates.Count);
+            Assert.AreEqual("N 21st St & Cherry St, Philadelphia, PA 19103, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
         }
 
         ///<exclude/>
