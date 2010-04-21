@@ -36,7 +36,7 @@ namespace Azavea.Open.Geocoding.Tests
         /// <exclude />
         public RequestProcessorDummyWithConfig(Config config, string component)
         {
-            _doReversing = Convert.ToBoolean(config.GetParameterWithDefault(component, "DoReversing", "false"));
+            _doReversing = Convert.ToBoolean(config.GetParameter(component, "DoReversing", "false"));
         }
 
         ///<exclude/>
