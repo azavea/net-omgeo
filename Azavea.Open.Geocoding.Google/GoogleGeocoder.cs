@@ -137,7 +137,45 @@ namespace Azavea.Open.Geocoding.Google
             //8       Address level accuracy. 
             //9       Premise (building name, etc) level accuracy
             XmlElement addressDetailsNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::AddressDetails");
-            if (addressDetailsNode != null) curCandidate.MatchScore = Convert.ToDouble(addressDetailsNode.GetAttribute("Accuracy"));
+            if (addressDetailsNode != null)
+            {
+                string accuracy = addressDetailsNode.GetAttribute("Accuracy");
+                curCandidate.MatchScore = Convert.ToDouble(accuracy);
+                switch (accuracy) /* Set our MatchType string from Google's list */
+                {
+                    case "0":
+                        curCandidate.MatchType = "Unknown";
+                        break;
+                    case "1":
+                        curCandidate.MatchType = "Country";
+                        break;
+                    case "2":
+                        curCandidate.MatchType = "Region";
+                        break;
+                    case "3":
+                        curCandidate.MatchType = "Sub-Region";
+                        break;
+                    case "4":
+                        curCandidate.MatchType = "Town";
+                        break;
+                    case "5":
+                        curCandidate.MatchType = "Post code";
+                        break;
+                    case "6":
+                        curCandidate.MatchType = "Street";
+                        break;
+                    case "7":
+                        curCandidate.MatchType = "Intersection";
+                        break;
+                    case "8":
+                        curCandidate.MatchType = "Address";
+                        break;
+                    case "9":
+                        curCandidate.MatchType = "Premise";
+                        break;
+                }
+           }
+
 
             //Standardized Address
             XmlElement standardAddressNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::address");

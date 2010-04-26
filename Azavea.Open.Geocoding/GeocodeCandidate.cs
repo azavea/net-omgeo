@@ -38,6 +38,12 @@ namespace Azavea.Open.Geocoding
         /// </summary>
         public double MatchScore { get; set; }
         /// <summary>
+        /// The type of match used to return this candidate, e.g., Rooftop, Street Level, Zip.
+        /// These are called "Locators" in ESRI parlance.
+        /// Not all IGeocoderSources will populate this field
+        /// </summary>
+        public string MatchType { get; set; }
+        /// <summary>
         /// Latitude of the result (if in lat/lon, otherwise the Y value of whatever
         /// coordinate system is in use).
         /// </summary>

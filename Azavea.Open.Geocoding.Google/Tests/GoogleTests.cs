@@ -49,6 +49,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
             GeocodeResponse gRes = _googleGeocoder.Geocode(gr);
             TestUtils.OutputGeocodeResponses(gRes);
             Assert.IsTrue(gRes.HasCandidates, "Google Geocoder returned no responses");
+            Assert.AreEqual("Address", gRes.Candidates[0].MatchType, "Google Geocoder didn't return proper MatchType");
         }
 
         ///<exclude/>
@@ -75,6 +76,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
             GeocodeResponse gRes = _googleGeocoder.Geocode(gr);
             TestUtils.OutputGeocodeResponses(gRes);
             Assert.IsTrue(gRes.HasCandidates, "Google Geocoder returned no responses");
+            Assert.AreEqual("Town", gRes.Candidates[0].MatchType, "Google Geocoder returned wrong MatchType for Town");
         }
 
         ///<exclude/>
