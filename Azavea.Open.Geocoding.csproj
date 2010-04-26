@@ -65,13 +65,17 @@
     <Compile Include="Processors\AddressPartDefaulter.cs" />
     <Compile Include="Processors\AddressSplitter.cs" />
     <Compile Include="Processors\CandidateTextReplacer.cs" />
+    <Compile Include="Processors\MatchTypeSelectorProcessor.cs" />
     <Compile Include="Processors\CountrySelectorProcessor.cs" />
     <Compile Include="Processors\IProcessor.cs" />
     <Compile Include="Processors\IRequestProcessor.cs" />
     <Compile Include="Processors\IResponseProcessor.cs" />
+    <Compile Include="Processors\ScoreNormalizer.cs" />
     <Compile Include="Processors\Tests\CandidateTextReplacerTests.cs" />
+    <Compile Include="Processors\Tests\MatchTypeSelectorProcessorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\AddressSplitterTest.cs" />
+    <Compile Include="Processors\Tests\ScoreNormalizerTest.cs" />
     <Compile Include="Tests\DummyGeocoderTests.cs" />
     <Compile Include="Tests\GeocodeCandidateTests.cs" />
     <Compile Include="Tests\GeocoderSourceDummy.cs" />
