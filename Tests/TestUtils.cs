@@ -44,6 +44,7 @@ namespace Azavea.Open.Geocoding.Tests
                     Console.WriteLine("State: " + gc.State);
                     Console.WriteLine("PostalCode: " + gc.PostalCode);
                     Console.WriteLine("Match Score: " + gc.MatchScore);
+                    Console.WriteLine("Match Type: " + gc.MatchType);
                     Console.WriteLine("X,Y: " + gc.Longitude + ", " + gc.Latitude);
                     Console.WriteLine("Additional Data: " + gc.RawData);
 
