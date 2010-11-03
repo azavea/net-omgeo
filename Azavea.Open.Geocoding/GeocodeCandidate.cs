@@ -22,7 +22,6 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections.Generic;
 
 namespace Azavea.Open.Geocoding
 {
@@ -74,30 +73,6 @@ namespace Azavea.Open.Geocoding
 
             // Sorts candidates in descending order
             return ((GeocodeCandidate)obj).MatchScore.CompareTo(MatchScore);
-        }
-    }
-
-    ///<summary>
-    /// Candidate comparer that will sort a list of GeocoderCandidate from
-    /// highest score to lowest score.
-    ///</summary>
-    [Obsolete("No longer needed because the default comparer sorts descending. Use that instead. Removing after 9/1/2010", false)]
-    public class DescendingCandidateComparer : IComparer<GeocodeCandidate>
-    {
-        /// <summary>
-        /// Compares two objects and returns a value indicating whether one is less than, 
-        /// equal to, or greater than the other.
-        /// </summary>
-        /// <returns>
-        /// Less than zero: <paramref name="x" /> is less than <paramref name="y" />.
-        /// Zero: <paramref name="x" /> equals <paramref name="y" />.
-        /// Greater than zero: <paramref name="x" /> is greater than <paramref name="y" />.      
-        ///</returns>
-        ///<param name="x">The first object to compare.</param>
-        ///<param name="y">The second object to compare.</param>
-        public int Compare(GeocodeCandidate x, GeocodeCandidate y)
-        {
-            return y.MatchScore.CompareTo(x.MatchScore);
         }
     }
 }
