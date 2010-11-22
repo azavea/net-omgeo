@@ -98,7 +98,7 @@ namespace Azavea.Open.Geocoding.Yahoo
             xmlList = xmlList.Remove(xmlList.IndexOf(ns), ns.Length);
             ns = " xmlns=\"urn:yahoo:maps\"";
             xmlList = xmlList.Remove(xmlList.IndexOf(ns), ns.Length);
-            ns = " xsi:schemaLocation=\"urn:yahoo:maps http://api.local.yahoo.com/MapsService/V1/GeocodeResponse.xsd\"";
+            ns = " xsi:schemaLocation=\"urn:yahoo:maps http://local.yahooapis.com/MapsService/V1/GeocodeResponse.xsd\"";
             xmlList = xmlList.Remove(xmlList.IndexOf(ns), ns.Length);
 
             XmlDocument doc = new XmlDocument();
