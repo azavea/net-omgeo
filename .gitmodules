@@ -1,3 +1,6 @@
 [submodule "Azavea.Open.Geocoding"]
 	path = Azavea.Open.Geocoding
 	url = git://omgeo.git.sourceforge.net/gitroot/omgeo/Azavea.Open.Geocoding
+[submodule "Azavea.Open.Geocoding.GeocoderUS"]
+	path = Azavea.Open.Geocoding.GeocoderUS
+	url = git://omgeo.git.sourceforge.net/gitroot/omgeo/Azavea.Open.Geocoding.GeocoderUS
