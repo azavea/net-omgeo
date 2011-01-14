@@ -10,3 +10,9 @@
 [submodule "Azavea.Open.Geocoding.Yahoo"]
 	path = Azavea.Open.Geocoding.Yahoo
 	url = git://omgeo.git.sourceforge.net/gitroot/omgeo/Azavea.Open.Geocoding.Yahoo
+[submodule "Azavea.Open.Common"]
+	path = Azavea.Open.Common
+	url = git://oatmealutils.git.sourceforge.net/gitroot/oatmealutils/Azavea.Open.Common
+[submodule "Azavea.Open.Reprojection"]
+	path = Azavea.Open.Reprojection
+	url = git://oatmealutils.git.sourceforge.net/gitroot/oatmealutils/Azavea.Open.Reprojection
