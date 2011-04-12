@@ -120,7 +120,6 @@ namespace Azavea.Open.Geocoding.Google.Tests
         }
 
         ///<exclude/>
-        [Ignore("Google geocoder seems to be returning the wrong ZIP code for the address in this test.")]
         [Test]
         public void TestGoogleGeocoderAmpersandInAddress()
         {
