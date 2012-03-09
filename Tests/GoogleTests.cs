@@ -129,7 +129,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
             TestUtils.OutputGeocodeResponses(gRes);
 
             Assert.AreEqual(1, gRes.Candidates.Count);
-            Assert.AreEqual("S Broad St & Tasker St, Philadelphia, PA 19147, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
+            Assert.AreEqual("S Broad St & Tasker St, Philadelphia, PA 19146, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
         }
         
         ///<exclude/>
