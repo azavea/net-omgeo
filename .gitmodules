@@ -1,6 +1,3 @@
-[submodule "Azavea.Open.Geocoding.Yahoo"]
-	path = Azavea.Open.Geocoding.Yahoo
-	url = git://github.com/azavea/net-omgeo-geocoding-yahoo.git
 [submodule "Azavea.Open.Common"]
 	path = Azavea.Open.Common
 	url = git://github.com/azavea/oatmealutils-common.git
