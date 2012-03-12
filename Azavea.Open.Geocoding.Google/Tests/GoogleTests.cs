@@ -100,7 +100,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
         {
             Console.WriteLine("Test - Google Geocoder Invoke Multiple Response");
             GeocodeRequest gr = new GeocodeRequest();
-            gr.TextString = "100 Broad St., Philadelphia PA";
+            gr.TextString = "100 12th St., Philadelphia PA";
 
             GeocodeResponse gRes = _googleGeocoder.Geocode(gr);
             TestUtils.OutputGeocodeResponses(gRes);
