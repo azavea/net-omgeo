@@ -1,3 +1,4 @@
+extern alias newGeoAPI;
 // Copyright (c) 2004-2010 Azavea, Inc.
 // 
 // Permission is hereby granted, free of charge, to any person
@@ -27,7 +28,7 @@ using System.Configuration;
 using System.Reflection;
 using Azavea.Open.Common;
 using Azavea.Open.Geocoding.Processors;
-using GeoAPI.CoordinateSystems;
+using newGeoAPI::GeoAPI.CoordinateSystems;
 using log4net;
 
 namespace Azavea.Open.Geocoding

@@ -36,6 +36,8 @@
     <Reference Include="GeoAPI, Version=1.1.0.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Azavea.Open.Reprojection\lib\geoapi\GeoAPI.dll</HintPath>
+<Aliases>newGeoAPI</Aliases>
+<Aliases>newGeoAPI</Aliases>
     </Reference>
     <Reference Include="NetTopologySuite, Version=1.7.3.36606, Culture=neutral, PublicKeyToken=f580a05016ebada1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

@@ -1,3 +1,4 @@
+extern alias newGeoAPI;
 // Copyright (c) 2004-2010 Azavea, Inc.
 // 
 // Permission is hereby granted, free of charge, to any person
@@ -24,7 +25,7 @@
 using System.Collections.Generic;
 using Azavea.Open.Common;
 using Azavea.Open.Reprojection;
-using GeoAPI.CoordinateSystems;
+using newGeoAPI::GeoAPI.CoordinateSystems;
 
 namespace Azavea.Open.Geocoding.Tests
 {

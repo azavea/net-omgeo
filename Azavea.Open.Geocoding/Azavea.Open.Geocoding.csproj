@@ -10,12 +10,13 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Azavea.Open.Geocoding</RootNamespace>
     <AssemblyName>Azavea.Open.Geocoding</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +39,8 @@
     <Reference Include="GeoAPI, Version=1.1.0.0, Culture=neutral, PublicKeyToken=a1a0da7def465678, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Azavea.Open.Reprojection\lib\geoapi\GeoAPI.dll</HintPath>
+<Aliases>newGeoAPI</Aliases>
+<Aliases>newGeoAPI</Aliases>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -98,11 +101,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Azavea.Open.Common\Azavea.Open.Common.csproj">
+    <ProjectReference Include="..\Azavea.Open.Common\Azavea.Open.Common.csproj">
       <Project>{ADBFE412-4F06-454A-AAF5-E93719E3B1FD}</Project>
       <Name>Azavea.Open.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Azavea.Open.Reprojection\Azavea.Open.Reprojection.csproj">
+    <ProjectReference Include="..\Azavea.Open.Reprojection\Azavea.Open.Reprojection.csproj">
       <Project>{155C7090-D562-4093-91B2-69C86795A0F4}</Project>
       <Name>Azavea.Open.Reprojection</Name>
     </ProjectReference>
