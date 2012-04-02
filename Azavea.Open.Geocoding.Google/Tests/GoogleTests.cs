@@ -124,12 +124,12 @@ namespace Azavea.Open.Geocoding.Google.Tests
         public void TestGoogleGeocoderAmpersandInAddress()
         {
             GeocodeRequest gr = new GeocodeRequest();
-            gr.TextString = "Broad & Tasker Sts, Philadelphia, PA";
+            gr.TextString = "15th & Tasker Sts, Philadelphia, PA";
             GeocodeResponse gRes = _googleGeocoder.Geocode(gr);
             TestUtils.OutputGeocodeResponses(gRes);
 
             Assert.AreEqual(1, gRes.Candidates.Count);
-            Assert.AreEqual("S Broad St & Tasker St, Philadelphia, PA 19146, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
+            Assert.AreEqual("Tasker St & S 15th St, Philadelphia, PA 19146, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
         }
         
         ///<exclude/>
