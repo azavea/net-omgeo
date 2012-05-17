@@ -25,7 +25,7 @@ using System;
 using Azavea.Open.Geocoding.Tests;
 using Azavea.Open.Common;
 using Azavea.Open.Reprojection;
-using GisSharpBlog.NetTopologySuite.Geometries;
+using NetTopologySuite.Geometries;
 using NUnit.Framework;
 
 namespace Azavea.Open.Geocoding.Google.Tests
