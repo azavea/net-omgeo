@@ -62,18 +62,20 @@ namespace Azavea.Open.Geocoding.Util
         /// <returns>The response text, with the optional line ending after each line.</returns>
         private static string GetDataFromURL(string url, string lineEnding)
         {
-            WebClient client = new WebClient();
-            Stream stream = client.OpenRead(url);
-            StreamReader sr = new StreamReader(stream);
-            string line;
-            StringBuilder sb = new StringBuilder();
-
-            while ((line = sr.ReadLine()) != null)
+            using (var client = new WebClient())
             {
-                sb.Append(line + lineEnding);
-            }
+                Stream stream = client.OpenRead(url);
+                StreamReader sr = new StreamReader(stream);
+                string line;
+                StringBuilder sb = new StringBuilder();
 
-            return sb.ToString();
+                while ((line = sr.ReadLine()) != null)
+                {
+                    sb.Append(line + lineEnding);
+                }
+
+                return sb.ToString();
+            }
         }
     }
 }
