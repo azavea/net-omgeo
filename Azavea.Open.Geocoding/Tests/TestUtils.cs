@@ -50,9 +50,10 @@ namespace Azavea.Open.Geocoding.Tests
 
 
                     Regex parsableAddressParts = new Regex(@"^((?<address>\d{1,}(\D|\s1/2)?(?:\s?-\s?\d{1,})*\s(?>[^#,]+)(?>#\s*.+)?),)?\s*((?<zip>\d{5}(-\d{4})?)\s*,)?\s*(?<city>[^,]+)\s*,(\s*(Town Of)\s*,)?\s*(?<state>[A-Z]{2})(\s+(?<zip2>\d{5}(-\d{4})?))?", RegexOptions.IgnoreCase);
-                    if (parsableAddressParts.IsMatch(gc.StandardizedAddress))
+                    string address = gc.StandardizedAddress;
+                    if (!string.IsNullOrEmpty(address) && parsableAddressParts.IsMatch(address))
                     {
-                        Match m = parsableAddressParts.Match(gc.StandardizedAddress);
+                        Match m = parsableAddressParts.Match(address);
                         GroupCollection groups = m.Groups;
                         Console.WriteLine("\t" + groups["address"].Value.Trim());
                         Console.WriteLine("\t" + groups["city"].Value.Trim());
