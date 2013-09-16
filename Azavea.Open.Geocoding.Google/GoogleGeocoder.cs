@@ -59,12 +59,12 @@ namespace Azavea.Open.Geocoding.Google
         /// <returns>A <code>GeocodeResponse</code> describing the results of the geocode.</returns>
         protected override GeocodeResponse InternalGeocode(GeocodeRequest geocodeRequest)
         {
-            const string baseGoogleGeocodeURL = @"http://maps.google.com/maps/geo";
+            const string baseGoogleGeocodeUrl = @"http://maps.googleapis.com/maps/api/geocode/xml";
 
             // For the address, either use the address field or the text string, 
             // depending on which one has a value.  Then, add each following address
             // part, one by one, if it has a value.
-            string queryString =
+            string address =
                 (!String.IsNullOrEmpty(geocodeRequest.TextString) ? geocodeRequest.TextString : geocodeRequest.Address) +
                 (!String.IsNullOrEmpty(geocodeRequest.City) ? (", " + geocodeRequest.City) : "") +
                 (!String.IsNullOrEmpty(geocodeRequest.State) ? (", " + geocodeRequest.State) : "") +
@@ -72,12 +72,13 @@ namespace Azavea.Open.Geocoding.Google
                 (!String.IsNullOrEmpty(geocodeRequest.Country) ? (", " + geocodeRequest.Country) : "");
 
             // add oe=utf-8 here for returning valid utf-8, not iso-8859-1
-            string googleGeocodeURL = baseGoogleGeocodeURL +
-                                      "?q=" + HttpUtility.UrlEncode(queryString) +
-                                      "&output=xml&oe=utf-8&key=" + _authKey;
+            string googleGeocodeUrl = baseGoogleGeocodeUrl +
+                                      "?address=" + HttpUtility.UrlEncode(address) +
+                                      "&sensor=false" +
+                                      "&key=" + _authKey;
 
-            string response = InternetSourceUtil.GetRawHTMLFromURL(googleGeocodeURL);
-            IList<GeocodeCandidate> responseList = XMLList2GeocodeCandidates(response);
+            string response = InternetSourceUtil.GetRawHTMLFromURL(googleGeocodeUrl);
+            var responseList = XMLList2GeocodeCandidates(response);
             return (new GeocodeResponse(responseList, this));
         }
 
@@ -93,24 +94,14 @@ namespace Azavea.Open.Geocoding.Google
         private static IList<GeocodeCandidate> XMLList2GeocodeCandidates(string xmlList)
         {
             IList<GeocodeCandidate> candidates = new List<GeocodeCandidate>();
-            //Namespaces messing up our Xqueries.
-            string ns = " xmlns=\"http://earth.google.com/kml/2.0\"";
-            xmlList = xmlList.Remove(xmlList.IndexOf(ns), ns.Length);
-
-            ns = " xmlns=\"urn:oasis:names:tc:ciq:xsdschema:xAL:2.0\"";
-            while (xmlList.IndexOf(ns) > 0)
-            {
-                xmlList = xmlList.Remove(xmlList.IndexOf(ns), ns.Length);
-            }
-
-            XmlDocument doc = new XmlDocument();
+            var doc = new XmlDocument();
             doc.LoadXml(xmlList);
-            XmlNodeList hits = doc.SelectNodes("//kml/Response/Placemark");
+            var results = doc.SelectNodes("//GeocodeResponse/result");
 
-            if (hits != null)
+            if (results != null)
             {
                 //Parse XML to get geocode candidate data;
-                foreach (XmlNode hit in hits)
+                foreach (XmlNode hit in results)
                 {
                     candidates.Add(XMLCandidate2GeocodeCandidate(hit));
                 }
@@ -118,96 +109,149 @@ namespace Azavea.Open.Geocoding.Google
             return candidates;
         }
 
+        private static string ChildNodeText(XmlNode node, string tagName)
+        {
+            var element = (XmlElement) node.SelectSingleNode("descendant::" + tagName);
+            return element != null ? element.InnerText : null;
+        }
+
+        /// <summary>
+        /// Create a score for the geocoder match.
+        /// </summary>
+        /// <param name="XMLCandidate">An XML 'result' node from a Google Geocoder v3 response.</param>
+        /// <returns>The score of the match</returns>
+        /// <remarks>The v2 Geocoder returned an "accuracy" parameter that used to be retuned as the score.
+        /// I have roughly mapped the match type to this old numeric scale:
+        /// 
+        /// 0    Unknown location. 
+        /// 1    Country level accuracy. 
+        /// 2    Region (state, province, prefecture, etc.) level accuracy. 
+        /// 3    Sub-region (county, municipality, etc.) level accuracy. 
+        /// 4    Town (city, village) level accuracy. 
+        /// 5    Post code (zip code) level accuracy. 
+        /// 6    Street level accuracy. 
+        /// 7    Intersection level accuracy. 
+        /// 8    Address level accuracy. 
+        /// 9    Premise (building name, etc) level accuracy
+        /// 
+        /// I weighted street_address over point_of_interest because this library primarily targeted at
+        /// geocoding street addresses.
+        ///</remarks>
+        private static double ScoreCandidate(XmlNode XMLCandidate)
+        {
+            var matchType = ChildNodeText(XMLCandidate, "type");
+            double score;
+            switch (matchType)
+            {
+                case "street_address": 
+                    score = 8.1;
+                    break;
+                case "intersection":
+                    score = 7;
+                    break;
+                case "premise":
+                    score = 9;
+                    break;
+                case "point_of_interest":
+                    score = 8;
+                    break;
+                default:
+                    score = 6;
+                    break;
+            }
+            return score;
+        } 
+
         private static GeocodeCandidate XMLCandidate2GeocodeCandidate(XmlNode XMLCandidate)
         {
-            GeocodeCandidate curCandidate = new GeocodeCandidate();
-            curCandidate.RawData = XMLCandidate.InnerXml;
-
-            //Test for presence of each tag. If it exists, assign it to appropriate value in Geocode Candidate object.
-
-            //Accuracy - Actually the Gecode *level* of the geocode. Invert.
-            //0       Unknown location. 
-            //1       Country level accuracy. 
-            //2       Region (state, province, prefecture, etc.) level accuracy. 
-            //3       Sub-region (county, municipality, etc.) level accuracy. 
-            //4       Town (city, village) level accuracy. 
-            //5       Post code (zip code) level accuracy. 
-            //6       Street level accuracy. 
-            //7       Intersection level accuracy. 
-            //8       Address level accuracy. 
-            //9       Premise (building name, etc) level accuracy
-            XmlElement addressDetailsNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::AddressDetails");
-            if (addressDetailsNode != null)
-            {
-                string accuracy = addressDetailsNode.GetAttribute("Accuracy");
-                curCandidate.MatchScore = Convert.ToDouble(accuracy);
-                switch (accuracy) /* Set our MatchType string from Google's list */
+            var candidate = new GeocodeCandidate
                 {
-                    case "0":
-                        curCandidate.MatchType = "Unknown";
-                        break;
-                    case "1":
-                        curCandidate.MatchType = "Country";
-                        break;
-                    case "2":
-                        curCandidate.MatchType = "Region";
-                        break;
-                    case "3":
-                        curCandidate.MatchType = "Sub-Region";
-                        break;
-                    case "4":
-                        curCandidate.MatchType = "Town";
-                        break;
-                    case "5":
-                        curCandidate.MatchType = "Post code";
-                        break;
-                    case "6":
-                        curCandidate.MatchType = "Street";
-                        break;
-                    case "7":
-                        curCandidate.MatchType = "Intersection";
-                        break;
-                    case "8":
-                        curCandidate.MatchType = "Address";
-                        break;
-                    case "9":
-                        curCandidate.MatchType = "Premise";
-                        break;
-                }
-           }
-
-
-            //Standardized Address
-            XmlElement standardAddressNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::address");
-            if (standardAddressNode != null) curCandidate.StandardizedAddress = standardAddressNode.InnerText;
-
-            //Address
-            XmlElement addressNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::ThoroughfareName");
-            if (addressNode != null) curCandidate.Address = addressNode.InnerText;
-
-            //City
-            XmlElement cityNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::LocalityName");
-            if (cityNode != null) curCandidate.City = cityNode.InnerText;
-
-            //State
-            XmlElement stateNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::AdministrativeAreaName");
-            if (stateNode != null) curCandidate.State = stateNode.InnerText;
-
-            //PostalCode
-            XmlElement postalNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::PostalCodeNumber");
-            if (postalNode != null) curCandidate.PostalCode = postalNode.InnerText;
-
-            //latLong
-            XmlElement latLongNode = (XmlElement)XMLCandidate.SelectSingleNode("descendant::Point/coordinates");
-            if (latLongNode != null)
+                    RawData = XMLCandidate.InnerXml,
+                    MatchType = ChildNodeText(XMLCandidate, "type"),
+                    StandardizedAddress = ChildNodeText(XMLCandidate, "formatted_address")
+                };
+            switch (candidate.MatchType)
             {
-                string latLong = latLongNode.InnerText;
-                string[] location = latLong.Split(',');
-                curCandidate.Longitude = Convert.ToDouble(location[0]);
-                curCandidate.Latitude = Convert.ToDouble(location[1]);
+                case "street_address":
+                case "premise":
+                case "intersection":
+                case "route":
+                    candidate.Address = candidate.StandardizedAddress.Split(',')[0];
+                    break;
+                case "point_of_interest":
+                    // Points of interest look like this
+                    //   Union Station, 1 Main Street, Burlington, VT 05401, USA
+                    // We want the second CSV value
+                    candidate.Address = candidate.StandardizedAddress.Split(',')[1];
+                    break;
+                default:
+                    candidate.Address = "";
+                    break;
+            }
+            var locationNode = XMLCandidate.SelectSingleNode("//location");
+            if (locationNode != null)
+            {
+                candidate.Longitude = Convert.ToDouble(ChildNodeText(locationNode, "lng"));
+                candidate.Latitude = Convert.ToDouble(ChildNodeText(locationNode, "lat"));
+            }
+            var componentNodes = XMLCandidate.SelectNodes("//address_component");
+            if (componentNodes != null)
+            {
+                foreach (XmlNode componentNode in componentNodes)
+                {   
+                    var componentType = ChildNodeText(componentNode, "type");
+                    var value = ChildNodeText(componentNode, "long_name");
+                    switch (componentType)
+                    {
+                        case "street_address": // indicates a precise street address.
+                            break;
+                        case "route": // indicates a named route (such as "US 101").
+                            break;
+                        case "intersection": // indicates a major intersection, usually of two major roads.
+                            break;
+                        case "street_number": // indicates a major intersection, usually of two major roads.
+                            break;
+                        case "country": // indicates the national political entity, and is typically the highest order type returned by the Geocoder.
+                            candidate.Country = value;
+                            break;
+                        case "administrative_area_level_1": // indicates a first-order civil entity below the country level. Within the United States, these administrative levels are states. Not all nations exhibit these administrative levels.
+                            candidate.State = value;
+                            break;
+                        case "administrative_area_level_2": // indicates a second-order civil entity below the country level. Within the United States, these administrative levels are counties. Not all nations exhibit these administrative levels.
+                            break;
+                        case "administrative_area_level_3": // indicates a third-order civil entity below the country level. This type indicates a minor civil division. Not all nations exhibit these administrative levels.
+                            break;
+                        case "colloquial_area": // indicates a commonly-used alternative name for the entity.
+                            break;
+                        case "locality": // indicates an incorporated city or town political entity.
+                            candidate.City = value;
+                            break;
+                        case "sublocality": // indicates a first-order civil entity below a locality. For some locations may receive one of the additional types: sublocality_level_1 through to sublocality_level_5. Each sublocality level is a civil entity. Larger numbers indicate a smaller geographic area.
+                            break;
+                        case "neighborhood": // indicates a named neighborhood
+                            break;
+                        case "premise": // indicates a named location, usually a building or collection of buildings with a common name
+                            break;
+                        case "subpremise": // indicates a first-order entity below a named location, usually a singular building within a collection of buildings with a common name
+                            break;
+                        case "postal_code": // indicates a postal code as used to address postal mail within the country.
+                            candidate.PostalCode = value;
+                            break;
+                        case "natural_feature": // indicates a prominent natural feature.
+                            break;
+                        case "airport": // indicates an airport.
+                            break;
+                        case "park": // indicates a named park.
+                            break;
+                        case "point_of_interest": // indicates a named point of interest. Typically, these "POI"s are prominent local entities that don't easily fit in another category such as "Empire State Building" or "Statue of Liberty."
+                            break;
+                    }
+                }
             }
 
-            return curCandidate;
+            candidate.MatchScore = ScoreCandidate(XMLCandidate);
+
+            return candidate;
         }
     }
 }
