@@ -48,8 +48,11 @@ namespace Azavea.Open.Geocoding.Google.Tests
 
             GeocodeResponse gRes = _googleGeocoder.Geocode(gr);
             TestUtils.OutputGeocodeResponses(gRes);
-            Assert.IsTrue(gRes.HasCandidates, "Google Geocoder returned no responses");
-            Assert.AreEqual("Address", gRes.Candidates[0].MatchType, "Google Geocoder didn't return proper MatchType");
+            Assert.IsTrue(gRes.Candidates.Count == 3, "Expected the geocoder to return 3 results");
+
+            Assert.AreEqual("street_address", gRes.Candidates[1].MatchType, "Expected the second match to have the type 'street_address'");
+            Assert.AreEqual("premise", gRes.Candidates[0].MatchType, "Expected the first match to have the type 'premise'");
+            Assert.AreEqual("point_of_interest", gRes.Candidates[2].MatchType, "Expected the third match to have the type 'point_of_interest'");
         }
 
         ///<exclude/>
@@ -76,7 +79,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
             GeocodeResponse gRes = _googleGeocoder.Geocode(gr);
             TestUtils.OutputGeocodeResponses(gRes);
             Assert.IsTrue(gRes.HasCandidates, "Google Geocoder returned no responses");
-            Assert.AreEqual("Town", gRes.Candidates[0].MatchType, "Google Geocoder returned wrong MatchType for Town");
+            Assert.AreEqual("locality", gRes.Candidates[0].MatchType, "Google Geocoder returned wrong MatchType for locality");
         }
 
         ///<exclude/>
@@ -100,7 +103,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
         {
             Console.WriteLine("Test - Google Geocoder Invoke Multiple Response");
             GeocodeRequest gr = new GeocodeRequest();
-            gr.TextString = "100 12th St., Philadelphia PA";
+            gr.TextString = "600 12th St., Philadelphia PA";
 
             GeocodeResponse gRes = _googleGeocoder.Geocode(gr);
             TestUtils.OutputGeocodeResponses(gRes);
@@ -129,7 +132,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
             TestUtils.OutputGeocodeResponses(gRes);
 
             Assert.AreEqual(1, gRes.Candidates.Count);
-            Assert.AreEqual("Tasker St & S 15th St, Philadelphia, PA 19146, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
+            Assert.AreEqual("Tasker Street & South 15th Street, Philadelphia, PA 19146, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
         }
         
         ///<exclude/>
@@ -142,7 +145,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
             TestUtils.OutputGeocodeResponses(gRes);
 
             Assert.AreEqual(1, gRes.Candidates.Count);
-            Assert.AreEqual("N 21st St & Cherry St, Philadelphia, PA 19103, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
+            Assert.AreEqual("North 21st Street & Cherry Street, Philadelphia, PA 19103, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
         }
 
         ///<exclude/>
@@ -159,6 +162,20 @@ namespace Azavea.Open.Geocoding.Google.Tests
                     new Point(response.Candidates[0].Longitude, response.Candidates[0].Latitude)
                     )
                 );
+        }
+
+        ///<exclude/>
+        [Test]
+        public void TestIntersection()
+        {
+            GeocodeRequest gr = new GeocodeRequest();
+            gr.TextString = "12th st and callowhill, philadelphia, pa";
+
+            GeocodeResponse gRes = _googleGeocoder.Geocode(gr);
+            TestUtils.OutputGeocodeResponses(gRes);
+            Assert.AreEqual(1, gRes.Candidates.Count, "Expected the geocoder to return 1 result");
+            Assert.AreEqual("intersection", gRes.Candidates[0].MatchType, "Expected the match type to be 'intersections'");
+            Assert.AreEqual("North 12th Street & Callowhill Street, Philadelphia, PA 19123, USA", gRes.Candidates[0].StandardizedAddress);
         }
     }
 }
