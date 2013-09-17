@@ -1,6 +1,0 @@
-[submodule "Azavea.Open.Common"]
-	path = Azavea.Open.Common
-	url = git://github.com/azavea/net-om-utils-common.git
-[submodule "Azavea.Open.Reprojection"]
-	path = Azavea.Open.Reprojection
-	url = git://github.com/azavea/net-omgeo-reprojection.git
