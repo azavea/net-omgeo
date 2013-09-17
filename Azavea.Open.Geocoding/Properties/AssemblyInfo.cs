@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Azavea.Open.Geocoding")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A geocoding abstraction layer")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Azavea Inc.")]
 [assembly: AssemblyProduct("Azavea.Open.Geocoding")]
-[assembly: AssemblyCopyright("Copyright © Azavea Inc. 2009")]
+[assembly: AssemblyCopyright("Copyright © Azavea Inc. 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 // Configure log4net using the .config file
@@ -35,3 +35,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyInformationalVersion("1.0.0")]
