@@ -59,7 +59,7 @@ namespace Azavea.Open.Geocoding.Google
         /// <returns>A <code>GeocodeResponse</code> describing the results of the geocode.</returns>
         protected override GeocodeResponse InternalGeocode(GeocodeRequest geocodeRequest)
         {
-            const string baseGoogleGeocodeUrl = @"http://maps.googleapis.com/maps/api/geocode/xml";
+            const string baseGoogleGeocodeUrl = @"https://maps.googleapis.com/maps/api/geocode/xml";
 
             // For the address, either use the address field or the text string, 
             // depending on which one has a value.  Then, add each following address
