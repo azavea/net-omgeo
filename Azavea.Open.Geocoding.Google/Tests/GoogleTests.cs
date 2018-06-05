@@ -48,11 +48,9 @@ namespace Azavea.Open.Geocoding.Google.Tests
 
             GeocodeResponse gRes = _googleGeocoder.Geocode(gr);
             TestUtils.OutputGeocodeResponses(gRes);
-            Assert.IsTrue(gRes.Candidates.Count == 3, "Expected the geocoder to return 3 results");
+            Assert.IsTrue(gRes.Candidates.Count == 1, "Expected the geocoder to return 3 results");
 
-            Assert.AreEqual("street_address", gRes.Candidates[1].MatchType, "Expected the second match to have the type 'street_address'");
             Assert.AreEqual("premise", gRes.Candidates[0].MatchType, "Expected the first match to have the type 'premise'");
-            Assert.AreEqual("point_of_interest", gRes.Candidates[2].MatchType, "Expected the third match to have the type 'point_of_interest'");
         }
 
         ///<exclude/>
@@ -132,7 +130,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
             TestUtils.OutputGeocodeResponses(gRes);
 
             Assert.AreEqual(1, gRes.Candidates.Count);
-            Assert.AreEqual("Tasker Street & South 15th Street, Philadelphia, PA 19146, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
+            Assert.AreEqual("Tasker St & S 15th St, Philadelphia, PA 19146, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
         }
         
         ///<exclude/>
@@ -145,7 +143,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
             TestUtils.OutputGeocodeResponses(gRes);
 
             Assert.AreEqual(1, gRes.Candidates.Count);
-            Assert.AreEqual("North 21st Street & Cherry Street, Philadelphia, PA 19103, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
+            Assert.AreEqual("N 21st St & Cherry St, Philadelphia, PA 19103, USA", gRes.Candidates[0].StandardizedAddress, "Geocoder found wrong intersection");
         }
 
         ///<exclude/>
@@ -175,7 +173,7 @@ namespace Azavea.Open.Geocoding.Google.Tests
             TestUtils.OutputGeocodeResponses(gRes);
             Assert.AreEqual(1, gRes.Candidates.Count, "Expected the geocoder to return 1 result");
             Assert.AreEqual("intersection", gRes.Candidates[0].MatchType, "Expected the match type to be 'intersections'");
-            Assert.AreEqual("North 12th Street & Callowhill Street, Philadelphia, PA 19123, USA", gRes.Candidates[0].StandardizedAddress);
+            Assert.AreEqual("N 12th St & Callowhill St, Philadelphia, PA 19123, USA", gRes.Candidates[0].StandardizedAddress);
         }
     }
 }
